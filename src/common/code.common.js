@@ -1,4 +1,4 @@
-import store from "@/store";
+import store from '@/store'
 
 /**
  * 获取 字典选项,通过字典编码
@@ -7,23 +7,23 @@ import store from "@/store";
  * @return {[]} array
  */
 export function getOptionsByCodes(codes, code) {
-  let result = [];
+  let result = []
   if (codes == null) {
-    throw new Error("codes 不能为空");
+    throw new Error('codes 不能为空')
   } else if (!code) {
-    throw new Error("code 不能为空");
+    throw new Error('code 不能为空')
   } else {
-    let existItem = codes.filter((d) => d.dictionaryType === code);
+    let existItem = codes.filter(d => d.dictionaryType === code)
     if (existItem?.length) {
       result = existItem
-        .map((d) => ({
+        .map(d => ({
           label: d.dictionaryValue,
           value: d.dictionaryCode,
           sort: d.dicSort || 0,
         }))
         .sort((a, b) => {
-          return a.sort - b.sort;
-        });
+          return a.sort - b.sort
+        })
     } else {
       //   if (code === 'maxHist') {
       //     let arr = []
@@ -38,17 +38,17 @@ export function getOptionsByCodes(codes, code) {
       //   }
     }
   }
-  return result;
+  return result
 }
 
 /**
  * 获取 字典选项
  * @param {String} code code
  */
-export const getOptions = (code) => {
-  let result = [];
+export const getOptions = code => {
+  let result = []
   if (code) {
-    result = getOptionsByCodes(store.getters.codes, code);
+    result = getOptionsByCodes(store.getters.codes, code)
   }
-  return result;
-};
+  return result
+}

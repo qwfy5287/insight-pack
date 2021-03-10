@@ -1,37 +1,37 @@
-import { isRef } from "@vue/composition-api";
-import { getParentIdsById, treeToList } from "./tree.common";
+import { isRef } from '@vue/composition-api'
+import { getParentIdsById, treeToList } from './tree.common'
 /**
  * InsForm elements
  */
 export const Elements = {
-  secbar: "secbar",
-  iconSecbar: "iconSecbar",
-  range: "range",
-  inputUnit: "inputUnit",
-  input: "input",
-  textarea: "textarea",
-  inputNumber: "inputNumber",
+  secbar: 'secbar',
+  iconSecbar: 'iconSecbar',
+  range: 'range',
+  inputUnit: 'inputUnit',
+  input: 'input',
+  textarea: 'textarea',
+  inputNumber: 'inputNumber',
   /**
    * 带时间
    *  attr:{type:'datetime'}
    */
-  date: "date",
-  dateRange: "dateRange",
-  timeRange: "timeRange",
-  checkbox: "checkbox",
-  select: "select",
-  selectMulti: "selectMulti",
-  selectGroup: "selectGroup",
-  rowsForm: "rowsForm",
-  InsFormInline: "InsFormInline",
-  showText: "showText",
-  numberRangeLink: "numberRangeLink",
-  password: "password",
+  date: 'date',
+  dateRange: 'dateRange',
+  timeRange: 'timeRange',
+  checkbox: 'checkbox',
+  select: 'select',
+  selectMulti: 'selectMulti',
+  selectGroup: 'selectGroup',
+  rowsForm: 'rowsForm',
+  InsFormInline: 'InsFormInline',
+  showText: 'showText',
+  numberRangeLink: 'numberRangeLink',
+  password: 'password',
   /**
    * 级联选择
    */
-  cascader: "cascader",
-};
+  cascader: 'cascader',
+}
 
 export const FormItem = {
   label: null,
@@ -49,26 +49,26 @@ export const FormItem = {
    */
   isRender: true,
   // ignore: false,
-};
+}
 
 /**
  * 获取表单数据
  * @param {*} dynamicForm
  */
-export const getFormData = (dynamicForm) => {
-  let result = {};
-  const form = getDynamicForm(dynamicForm);
-  if (!form) return false;
-  Object.keys(form).forEach((key) => {
-    const item = form[key];
+export const getFormData = dynamicForm => {
+  let result = {}
+  const form = getDynamicForm(dynamicForm)
+  if (!form) return false
+  Object.keys(form).forEach(key => {
+    const item = form[key]
     if (item.element === Elements.cascader) {
       // [1,2,3] > 3
-      result[key] = item.value[item.value.length - 1];
+      result[key] = item.value[item.value.length - 1]
     } else if (item.element !== Elements.secbar) {
       // secbar 表单项 不生成属性值
-      result[key] = item.value;
+      result[key] = item.value
     }
-  });
+  })
 
   // for (let prop in dynamicForm) {
   //   let d = dynamicForm[prop];
@@ -82,15 +82,15 @@ export const getFormData = (dynamicForm) => {
   //   }
   // }
 
-  return result;
-};
+  return result
+}
 
 /**
  * 获取 toRefs 的 dynamicForm
  */
-export const getDynamicForm = (dynamicForm) => {
-  return isRef(dynamicForm) ? dynamicForm.value : dynamicForm;
-};
+export const getDynamicForm = dynamicForm => {
+  return isRef(dynamicForm) ? dynamicForm.value : dynamicForm
+}
 
 /**
  * 设置表单数据
@@ -98,24 +98,24 @@ export const getDynamicForm = (dynamicForm) => {
  * @param {Object} dataItem 数据
  */
 export const setFormData = (dynamicForm, dataItem) => {
-  if (!dataItem) return false;
+  if (!dataItem) return false
 
-  const form = getDynamicForm(dynamicForm);
-  if (!form) return false;
-  Object.keys(form).forEach((key) => {
-    const item = form[key];
-    const curVal = dataItem[key];
+  const form = getDynamicForm(dynamicForm)
+  if (!form) return false
+  Object.keys(form).forEach(key => {
+    const item = form[key]
+    const curVal = dataItem[key]
     if (curVal !== undefined && curVal !== null) {
       if (item.element === Elements.cascader) {
         // 3 > [1,2,3]
-        const parentIds = getParentIdsById(curVal, treeToList(item.options));
-        item.value = [...parentIds, curVal];
+        const parentIds = getParentIdsById(curVal, treeToList(item.options))
+        item.value = [...parentIds, curVal]
       } else {
-        item.value = curVal;
+        item.value = curVal
       }
     }
-  });
-};
+  })
+}
 
 /**
  * 设置 表单的 options 根据配置的 code
@@ -123,15 +123,15 @@ export const setFormData = (dynamicForm, dataItem) => {
  * @param {Function} callbackGetOptions getOptions
  */
 export const setFormOptions = (dynamicForm, callbackGetOptions) => {
-  const form = getDynamicForm(dynamicForm);
-  if (!form) return false;
-  Object.keys(form).forEach((key) => {
-    const item = form[key];
+  const form = getDynamicForm(dynamicForm)
+  if (!form) return false
+  Object.keys(form).forEach(key => {
+    const item = form[key]
     if (item.code) {
-      item.options = callbackGetOptions(item.code) || [];
+      item.options = callbackGetOptions(item.code) || []
     }
-  });
-};
+  })
+}
 
 // /**
 //  * 获取 rules

@@ -4,7 +4,7 @@
  * @returns {String} result
  */
 export function firstUpperCase(source) {
-  return source.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+  return source.toLowerCase().replace(/( |^)[a-z]/g, L => L.toUpperCase())
 }
 
 /**
@@ -12,19 +12,19 @@ export function firstUpperCase(source) {
  * @param {*} str
  */
 export function isJSON(str) {
-  if (typeof str == "string") {
+  if (typeof str == 'string') {
     try {
-      let obj = JSON.parse(str);
-      if (typeof obj == "object" && obj) {
-        return true;
+      let obj = JSON.parse(str)
+      if (typeof obj == 'object' && obj) {
+        return true
       } else {
-        return false;
+        return false
       }
     } catch (e) {
-      return false;
+      return false
     }
   } else {
-    console.error("It is not a string!");
-    return false;
+    console.error('It is not a string!')
+    return false
   }
 }
