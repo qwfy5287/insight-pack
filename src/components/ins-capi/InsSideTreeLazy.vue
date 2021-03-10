@@ -120,7 +120,8 @@ import { defineComponent, onMounted, reactive, toRefs } from '@vue/composition-a
 // import merge from 'lodash/merge'
 // import copy from 'fast-copy'
 // import { confirmRemove } from 'insight-pack/src/common/confirm.common'
-import { confirmRemove } from '@/common/confirm.common'
+// import { confirmRemove } from '@/common/confirm.common'
+import { confirmRemove } from '../../common/confirm.common'
 import debounce from 'lodash/debounce'
 // api
 // let id = 1000

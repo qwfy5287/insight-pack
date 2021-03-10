@@ -42,7 +42,7 @@ export const withInsSideTreeLazy = () => ({
           label: '测试库',
           id: 0,
         },
-        async () => {
+        async arg => {
           let res = {
             data: [
               { id: 10, label: 'node-10' },
@@ -52,7 +52,7 @@ export const withInsSideTreeLazy = () => ({
           }
           return res
         },
-        async () => {
+        async arg => {
           let res = {
             data: [
               { id: 1010, label: 'node-1010' },
