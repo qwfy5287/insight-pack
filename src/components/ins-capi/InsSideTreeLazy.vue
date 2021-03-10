@@ -119,10 +119,59 @@ import { defineComponent, onMounted, reactive, toRefs } from '@vue/composition-a
 // common
 // import merge from 'lodash/merge'
 // import copy from 'fast-copy'
-import { confirmRemove } from 'insight-pack/src/common/confirm.common'
+// import { confirmRemove } from 'insight-pack/src/common/confirm.common'
+import { confirmRemove } from '@/common/confirm.common'
 import debounce from 'lodash/debounce'
 // api
 // let id = 1000
+
+/**
+ * Ins 处理 树 懒加载
+ */
+export const insHandleLoadNode = async (
+  node,
+  resolve,
+  rootNode,
+  callbackQueryTopLevel,
+  callbackQueryByParentId
+) => {
+  let parentId = node.id
+
+  let res = {}
+  if (node.level === 0) {
+    res = {
+      data: [
+        rootNode || {
+          label: '分类库',
+          id: 0,
+        },
+      ],
+    }
+  } else if (node.level === 1) {
+    parentId = 0
+    res = await callbackQueryTopLevel({
+      parentId,
+    })
+  } else {
+    // node.id 不是数据的 id
+    // parentId = node?.data?.pkid
+    parentId = node.id
+    res = await callbackQueryByParentId?.({
+      parentId,
+    })
+  }
+
+  setTimeout(() => {
+    resolve(res?.data || [])
+  }, 0.2 * 1000)
+
+  // if (node.level === 1) {
+  //   // 默认选中第一个
+  //   if (res?.data?.length) {
+  //     // ctx.refs.insSideTreeLazyRef.setCurrentKey(res.data[0].pkid)
+  //   }
+  // }
+}
 
 export default defineComponent({
   name: 'InsSideTreeLazy',
@@ -251,6 +300,10 @@ export default defineComponent({
 
       filterText: '',
     })
+
+    //#region common
+
+    //#endregion
 
     /**
      * 设置 当前节点
