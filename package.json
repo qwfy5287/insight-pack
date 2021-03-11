@@ -1,6 +1,6 @@
 {
   "name": "insight-pack",
-  "version": "1.8.9",
+  "version": "1.8.11",
   "main": "lib/insight-pack.umd.min.js",
   "private": false,
   "scripts": {

@@ -86,6 +86,7 @@ InsTemplate 模板 composition api
           :prop="`${index}.value`"
           :rules="getRulesWithMessage(item)"
           :class="getFormItemClass(item)"
+          :style="getFormItemStyle(item)"
         >
           <!-- isView 查看 -->
           <span v-if="(isView && item.isView !== false) || item.isView" class="input-text">
@@ -239,8 +240,17 @@ export const useCommon = (props, ctx) => {
       'col-2': item.col === 2,
       'col-3': item.col === 3,
       'col-3-2': item.col === '2/3',
+      'not-float': item.float === false,
     }
     return result
+  }
+
+  /**
+   * 获取 formItem 样式
+   *  width 宽度
+   */
+  const getFormItemStyle = ({ width }) => {
+    return width ? { width: width } : {}
   }
 
   /**
@@ -339,6 +349,7 @@ export const useCommon = (props, ctx) => {
     getLabel,
     getRangeRequired,
     getFormItemClass,
+    getFormItemStyle,
   }
 }
 export default defineComponent({
@@ -516,6 +527,9 @@ export default defineComponent({
     }
     &.col-3 {
       clear: none;
+    }
+    &.not-float {
+      float: none;
     }
   }
   &:after {
