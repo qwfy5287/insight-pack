@@ -162,9 +162,9 @@ export const insHandleLoadNode = async (
     })
   }
 
-  setTimeout(() => {
-    resolve(res?.data || [])
-  }, 0.2 * 1000)
+  // setTimeout(() => {
+  resolve(res?.data || [])
+  // }, 0.2 * 1000)
 
   // if (node.level === 1) {
   //   // 默认选中第一个
@@ -172,6 +172,18 @@ export const insHandleLoadNode = async (
   //     // ctx.refs.insSideTreeLazyRef.setCurrentKey(res.data[0].pkid)
   //   }
   // }
+}
+
+/**
+ * 转换节点数据
+ * id,label
+ */
+export const transformResData = (res, id = 'id', label = 'label') => {
+  // 转换数据
+  res?.data?.forEach(d => {
+    d.id = d[id]
+    d.label = d[label]
+  })
 }
 
 export default defineComponent({
