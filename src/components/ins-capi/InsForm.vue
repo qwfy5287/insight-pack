@@ -418,6 +418,7 @@ export default defineComponent({
       getClearable,
       getRangeRequired,
       getFormItemClass,
+      getFormItemStyle,
       getLabel,
     } = useCommon(props, ctx)
     //#region common
@@ -491,6 +492,7 @@ export default defineComponent({
       getClearable,
       getRangeRequired,
       getFormItemClass,
+      getFormItemStyle,
       getLabel,
       toSaveData,
     }
