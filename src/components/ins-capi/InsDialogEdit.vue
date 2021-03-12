@@ -77,9 +77,9 @@ export default defineComponent({
      */
     top: { type: String, default: '5vh' },
     /**
-     * 点确定时 自动关闭
+     * 点确定时 自动关闭 false
      */
-    autoClose: { type: Boolean, default: true },
+    autoClose: { type: Boolean, default: false },
     /**
      * 取消 文字
      */
@@ -115,11 +115,8 @@ export default defineComponent({
      * 处理确定
      */
     const save = () => {
-      // state.loading = true
       ctx.emit('save')
-
-      //
-      if (props.autoClose === true) state.dialogVisible = false
+      if (props.autoClose === true) close()
     }
 
     /**
@@ -135,16 +132,7 @@ export default defineComponent({
     }
 
     const render = () => {
-      // statePage.setTableHead([
-      //   {
-      //     label: '标题',
-      //     prop: 'speName',
-      //   },
-      //   {
-      //     label: '备注',
-      //     prop: 'speDesc',
-      //   },
-      // ])
+      //
     }
 
     const init = () => {
