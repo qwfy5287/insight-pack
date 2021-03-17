@@ -32,7 +32,7 @@ import variables from './ins-top-bar-var.scss'
 // import variables from '@/styles/variables.scss'
 
 // common
-import { listToTree, treeToListForRouter } from 'insight-pack/src/common/tree.common'
+import { listToTree, treeToListForRouter } from '../../../common/tree.common'
 
 export default {
   name: 'InsTopbar',

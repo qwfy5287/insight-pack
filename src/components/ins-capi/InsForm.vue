@@ -215,7 +215,7 @@ import InsInputUnit from './ins-form-element/InsInputUnit.vue'
 import InsSlotFormItem from './InsSlotFormItem.vue'
 
 // common
-import { Elements, getFormData, FormItem } from 'insight-pack/src/common/form.common'
+import { Elements, getFormData, FormItem } from '../../common/form.common'
 import debounce from 'lodash/debounce'
 // api
 // const

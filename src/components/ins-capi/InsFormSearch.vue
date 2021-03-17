@@ -134,7 +134,7 @@
 import { defineComponent, onMounted, toRefs, reactive, ref } from '@vue/composition-api'
 // component
 // common
-import { Elements, getFormData, FormItem } from 'insight-pack/src/common/form.common'
+import { Elements, getFormData, FormItem } from '../../common/form.common'
 import debounce from 'lodash/debounce'
 // api
 // const
