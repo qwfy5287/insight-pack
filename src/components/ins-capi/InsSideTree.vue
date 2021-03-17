@@ -222,12 +222,14 @@ export default defineComponent({
      * 设置 当前节点
      *  .isCurrent
      */
-    const setCurrentKey = key => {
+    const setCurrentKey = (key, targetClick = true) => {
       ctx.refs.elTreeRef?.setCurrentKey(key)
-      // 触发当前 节点单击事件
-      let curNode = ctx.refs.elTreeRef?.getNode(key)
-      handleNodeClick(curNode.data, curNode)
-      // ctx.refs.elTreeRef?.getCurrentNode(key)
+      if (targetClick) {
+        // 触发当前 节点单击事件
+        let curNode = ctx.refs.elTreeRef?.getNode(key)
+        handleNodeClick(curNode.data, curNode)
+        // ctx.refs.elTreeRef?.getCurrentNode(key)
+      }
     }
 
     const append = data => {

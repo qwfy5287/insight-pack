@@ -344,6 +344,7 @@ export default defineComponent({
       inputChange,
       getRulesWithMessage,
       getClearable,
+      toSaveData,
     }
   },
 })
