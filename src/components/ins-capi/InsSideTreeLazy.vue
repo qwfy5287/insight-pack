@@ -390,7 +390,6 @@ export default defineComponent({
     }
 
     const handleNodeClick = (data, node) => {
-      console.log('🚀 ~ file: InsSideTreeLazy.vue ~ line 263 ~ setup ~ data', data)
       ctx.emit('nodeClick', data, node)
     }
 

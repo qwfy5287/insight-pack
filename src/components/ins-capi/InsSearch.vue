@@ -11,6 +11,7 @@
     <el-input
       v-model="keyword"
       placeholder="请输入关键字"
+      clearable
       @keyup.enter.native="$emit('search', keyword)"
     >
       <el-button

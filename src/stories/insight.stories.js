@@ -8,10 +8,17 @@ import MyButton from '../components/MyButton.vue'
 import InsTemplate from '../components/ins-capi/InsTemplate.vue'
 import InsPager from '../components/ins-capi/InsPager.vue'
 import InsSideTreeLazy, { insHandleLoadNode } from '../components/ins-capi/InsSideTreeLazy.vue'
+import InsSearch from '../components/ins-capi/InsSearch.vue'
 
 export default {
   title: 'Insight',
 }
+
+export const withInsSearch = () => ({
+  components: { InsSearch },
+  template: '<InsSearch></InsSearch>',
+  // methods: { action: action("clicked") },
+})
 
 // 树 懒加载
 export const withInsSideTreeLazy = () => ({

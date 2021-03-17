@@ -246,9 +246,8 @@ export default defineComponent({
       children.splice(index, 1)
     }
 
-    const handleNodeClick = data => {
-      console.log(data)
-      ctx.emit('nodeClick', data)
+    const handleNodeClick = (data, node) => {
+      ctx.emit('nodeClick', data, node)
     }
 
     const filterNode = (value, data) => {
