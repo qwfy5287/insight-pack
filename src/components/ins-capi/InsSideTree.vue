@@ -40,6 +40,7 @@
           trigger="hover"
           :open-delay="300"
           popper-class="el-popover-custom"
+          v-if="hasOpera === true"
         >
           <div>
             <el-button
@@ -69,6 +70,7 @@
           </div>
           <span slot="reference">{{ node.label }}</span>
         </el-popover>
+        <span v-else>{{ node.label }}</span>
       </span>
     </el-tree>
   </div>
@@ -100,6 +102,7 @@ export default defineComponent({
         label: 'label',
       }),
     },
+    hasOpera: { type: Boolean, default: true },
   },
   setup(props, ctx) {
     const state = reactive({
@@ -215,6 +218,18 @@ export default defineComponent({
       filterText: '',
     })
 
+    /**
+     * 设置 当前节点
+     *  .isCurrent
+     */
+    const setCurrentKey = key => {
+      ctx.refs.elTreeRef?.setCurrentKey(key)
+      // 触发当前 节点单击事件
+      let curNode = ctx.refs.elTreeRef?.getNode(key)
+      handleNodeClick(curNode.data, curNode)
+      // ctx.refs.elTreeRef?.getCurrentNode(key)
+    }
+
     const append = data => {
       const newChild = { id: id++, label: 'testNode', children: [] }
       if (!data.children) {
@@ -294,6 +309,7 @@ export default defineComponent({
       remove,
       inputChange,
       filterNode,
+      setCurrentKey,
     }
   },
 })
@@ -316,5 +332,11 @@ export default defineComponent({
 <style lang="scss">
 .el-popover-custom {
   min-width: 50px;
+}
+.el-tree-node.is-current {
+  & > .el-tree-node__content {
+    background: #f5f7fa;
+    border-radius: 2px;
+  }
 }
 </style>

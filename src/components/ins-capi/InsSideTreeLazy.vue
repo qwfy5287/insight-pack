@@ -39,6 +39,7 @@
           trigger="hover"
           :open-delay="300"
           popper-class="el-popover-custom"
+          v-if="hasOpera === true"
         >
           <div>
             <el-button
@@ -70,6 +71,8 @@
             {{ node.label }}
           </span>
         </el-popover>
+        <span v-else>{{ node.label }}</span>
+
         <!-- <el-popover
           placement="right"
           trigger="hover"
@@ -199,6 +202,7 @@ export default defineComponent({
       }),
     },
     nodeKey: { type: String, default: 'id' },
+    hasOpera: { type: Boolean, default: true },
   },
   setup(props, ctx) {
     const state = reactive({
