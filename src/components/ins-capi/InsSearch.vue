@@ -1,13 +1,12 @@
 <!--
-名称：巡检任务-时间轴
+名称：ins 搜索条
 版本：1.0.0
 作者：林加炳
 时间：2021
 -->
 <template>
-  <div class="ins-search">
+  <div class="ins-search" :class="{ 'has-reset': hasReset }">
     <!-- {{ msg }} -->
-    <!-- <el-button type="primary">主要按钮</el-button> -->
     <el-input
       v-model="keyword"
       placeholder="请输入关键字"
@@ -23,6 +22,17 @@
         立即查找
       </el-button>
     </el-input>
+    <el-button
+      v-if="hasReset"
+      type="text"
+      @click="
+        keyword = null
+        $emit('reset', null)
+      "
+      class="el-button-reset"
+    >
+      重置
+    </el-button>
   </div>
 </template>
 
@@ -42,7 +52,12 @@ import { defineComponent, onMounted, reactive, toRefs } from '@vue/composition-a
 export default defineComponent({
   name: 'InsSearch',
   components: {},
-  props: {},
+  props: {
+    /**
+     * 有重置按钮 false
+     */
+    hasReset: { type: Boolean, default: false },
+  },
   setup(props, ctx) {
     const state = reactive({
       msg: 'hello',
@@ -50,16 +65,7 @@ export default defineComponent({
     })
 
     const render = () => {
-      // statePage.setTableHead([
-      //   {
-      //     label: '标题',
-      //     prop: 'speName',
-      //   },
-      //   {
-      //     label: '备注',
-      //     prop: 'speDesc',
-      //   },
-      // ])
+      //
     }
 
     const init = () => {
@@ -80,6 +86,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 .ins-search {
   visibility: initial;
+  &.has-reset {
+    padding-right: 60px;
+  }
+
+  .el-button-reset {
+    position: absolute;
+    margin-left: 20px;
+  }
 }
 ::v-deep .el-input-group--append {
   & > .el-input__inner {
