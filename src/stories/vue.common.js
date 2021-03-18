@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+import '../assets/tailwind.css'
+
 /**
  * VueCompositionApi
  */
