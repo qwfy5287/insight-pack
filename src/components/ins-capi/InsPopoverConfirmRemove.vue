@@ -60,7 +60,7 @@ export default defineComponent({
      */
     const getConfirmContent = () => {
       let row = props.row ?? {}
-      const name = row?.name || row[Object.keys(row).find(d => d.includes('Name'))]
+      const name = row?.name || row[Object.keys(row).find(d => d.includes('Name'))] || row?.label
       return `此操作将永久删除 ( ${name || '当前记录'} ), 是否继续?`
     }
 
