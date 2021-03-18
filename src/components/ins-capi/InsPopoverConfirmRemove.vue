@@ -19,9 +19,13 @@
       <el-button size="mini" @click="handleCancel">取消</el-button>
       <el-button type="primary" size="mini" @click="handleConfirm">确定</el-button>
     </div>
-    <el-button slot="reference" type="text" title="删除">
-      <i class="iconfont icon-delete" />
-    </el-button>
+    <span slot="reference">
+      <slot>
+        <el-button type="text" title="删除">
+          <i class="iconfont icon-delete" />
+        </el-button>
+      </slot>
+    </span>
   </el-popover>
 </template>
 
