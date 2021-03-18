@@ -9,10 +9,17 @@ import InsTemplate from '../components/ins-capi/InsTemplate.vue'
 import InsPager from '../components/ins-capi/InsPager.vue'
 import InsSideTreeLazy, { insHandleLoadNode } from '../components/ins-capi/InsSideTreeLazy.vue'
 import InsSearch from '../components/ins-capi/InsSearch.vue'
+import InsSlotPanel from '../components/ins-capi/InsSlotPanel.vue'
 
 export default {
   title: 'Insight',
 }
+
+export const withInsSlotPanel = () => ({
+  components: { InsSlotPanel },
+  template: '<InsSlotPanel title="标题01">sdf</InsSlotPanel>',
+  // methods: { action: action("clicked") },
+})
 
 export const withInsSearch = () => ({
   components: { InsSearch },
@@ -70,7 +77,6 @@ export const withInsSideTreeLazy = () => ({
           return res
         }
       )
-      debugger
       // let parentId = node.id
 
       // let res = {}
@@ -128,7 +134,8 @@ export const withInsSideTreeLazy = () => ({
       // // ctx.refs.insSideTreeLazyRef.setCurrentKey('25t02')
     },
   },
-  template: '<InsSideTreeLazy ref="insSideTreeLazyRef" @loadNode="handleLoadNode" />',
+  template:
+    '<InsSideTreeLazy ref="insSideTreeLazyRef" @loadNode="handleLoadNode" :isPopover="true" />',
 })
 
 // 分页

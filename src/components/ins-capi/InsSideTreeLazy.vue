@@ -59,6 +59,7 @@
               @click="edit(node, data)"
             />
             <el-button
+              v-if="!isPopover"
               title="删除"
               type="danger"
               icon="el-icon-delete"
@@ -66,6 +67,13 @@
               size="mini"
               @click="remove(node, data)"
             />
+            <ins-popover-confirm-remove
+              v-else
+              :row="{ id: 10, name: 'label10' }"
+              @confirm="removePopover(node, data)"
+            >
+              <el-button title="删除" type="danger" icon="el-icon-delete" circle size="mini" />
+            </ins-popover-confirm-remove>
           </div>
           <span slot="reference" class="node-label">
             {{ node.label }}
@@ -116,6 +124,7 @@
 import { defineComponent, onMounted, reactive, toRefs } from '@vue/composition-api'
 
 // component
+import InsPopoverConfirmRemove from './InsPopoverConfirmRemove.vue'
 
 // use
 
@@ -189,7 +198,9 @@ export const transformResData = (res, id = 'id', label = 'label') => {
 
 export default defineComponent({
   name: 'InsSideTreeLazy',
-  components: {},
+  components: {
+    InsPopoverConfirmRemove,
+  },
   props: {
     treeData: { type: Array, default: () => [] },
     defaultProps: {
@@ -201,6 +212,10 @@ export default defineComponent({
     },
     nodeKey: { type: String, default: 'id' },
     hasOpera: { type: Boolean, default: true },
+    /**
+     * 是否 气泡确认 删除
+     */
+    isPopover: { type: Boolean, default: false },
   },
   setup(props, ctx) {
     const state = reactive({
@@ -371,6 +386,22 @@ export default defineComponent({
       ctx.emit('add', node, data)
     }
 
+    /**
+     * 删除 popover 确认
+     */
+    const removePopover = (node, data) => {
+      // 有子级，不能删除
+      if (node.childNodes.length > 0) {
+        ctx.root.$message.error('请先删除子级。')
+        return false
+      }
+
+      ctx.emit('remove', node, data)
+    }
+
+    /**
+     * 删除 带弹窗确认
+     */
     const remove = async (node, data) => {
       // 有子级，不能删除
       if (node.childNodes.length > 0) {
@@ -382,11 +413,6 @@ export default defineComponent({
       if (!resConfirm) return false
 
       ctx.emit('remove', node, data)
-
-      // console.log(
-      //   '🚀 ~ file: InsSideTree.vue ~ line 262 ~ remove ~ node.childNodes.length',
-      //   node.childNodes.length
-      // )
 
       // const parent = node.parent
       // const children = parent.data.children || parent.data
@@ -446,6 +472,7 @@ export default defineComponent({
       updateKeyChildren,
       expandNode,
       setCurrentKey,
+      removePopover,
     }
   },
 })
