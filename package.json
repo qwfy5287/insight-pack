@@ -1,6 +1,6 @@
 {
   "name": "insight-pack",
-  "version": "1.10.3",
+  "version": "1.10.8",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",

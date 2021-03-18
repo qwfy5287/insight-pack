@@ -50,14 +50,14 @@
               size="mini"
               @click="add(node, data)"
             />
-            <el-button
+            <!-- <el-button
               title="编辑"
               type="primary"
               icon="el-icon-edit"
               circle
               size="mini"
               @click="edit(node, data)"
-            />
+            /> -->
             <el-button
               v-if="!isPopover"
               title="删除"
@@ -67,11 +67,7 @@
               size="mini"
               @click="remove(node, data)"
             />
-            <ins-popover-confirm-remove
-              v-else
-              :row="{ id: 10, name: 'label10' }"
-              @confirm="removePopover(node, data)"
-            >
+            <ins-popover-confirm-remove v-else :row="data" @confirm="removePopover(node, data)">
               <el-button title="删除" type="danger" icon="el-icon-delete" circle size="mini" />
             </ins-popover-confirm-remove>
           </div>
@@ -213,70 +209,14 @@ export default defineComponent({
     nodeKey: { type: String, default: 'id' },
     hasOpera: { type: Boolean, default: true },
     /**
-     * 是否 气泡确认 删除
+     * 是否 气泡确认 删除 true
      */
-    isPopover: { type: Boolean, default: false },
+    isPopover: { type: Boolean, default: true },
   },
   setup(props, ctx) {
     const state = reactive({
       msg: 'hello',
-      data1: [
-        {
-          label: '一级 1',
-          children: [
-            {
-              label: '二级 1-1',
-              children: [
-                {
-                  label: '三级 1-1-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 2',
-          children: [
-            {
-              label: '二级 2-1',
-              children: [
-                {
-                  label: '三级 2-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 2-2',
-              children: [
-                {
-                  label: '三级 2-2-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 3',
-          children: [
-            {
-              label: '二级 3-1',
-              children: [
-                {
-                  label: '三级 3-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 3-2',
-              children: [
-                {
-                  label: '三级 3-2-1',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+
       data: [
         {
           id: 1,

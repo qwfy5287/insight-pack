@@ -51,14 +51,14 @@
               size="mini"
               @click="append(data)"
             />
-            <el-button
+            <!-- <el-button
               title="编辑"
               type="primary"
               icon="el-icon-edit"
               circle
               size="mini"
               @click="edit(data)"
-            />
+            /> -->
             <el-button
               title="删除"
               type="danger"
@@ -107,63 +107,6 @@ export default defineComponent({
   setup(props, ctx) {
     const state = reactive({
       msg: 'hello',
-      data1: [
-        {
-          label: '一级 1',
-          children: [
-            {
-              label: '二级 1-1',
-              children: [
-                {
-                  label: '三级 1-1-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 2',
-          children: [
-            {
-              label: '二级 2-1',
-              children: [
-                {
-                  label: '三级 2-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 2-2',
-              children: [
-                {
-                  label: '三级 2-2-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 3',
-          children: [
-            {
-              label: '二级 3-1',
-              children: [
-                {
-                  label: '三级 3-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 3-2',
-              children: [
-                {
-                  label: '三级 3-2-1',
-                },
-              ],
-            },
-          ],
-        },
-      ],
       data: [
         {
           id: 1,
