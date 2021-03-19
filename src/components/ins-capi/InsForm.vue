@@ -39,7 +39,7 @@ InsTemplate 模板 composition api
           :label="getLabel(showLabel, item)"
           :prop="`${index}.value`"
           :rules="getRulesWithMessage(item)"
-          @change="change(item)"
+          @change="change(item, index)"
         />
 
         <!-- :item="item" -->
@@ -56,7 +56,7 @@ InsTemplate 模板 composition api
             :prop="`${index}`"
             :rules="item.multiRules"
             :attr="item.multiAttr"
-            @change="change(item)"
+            @change="change(item, index)"
           />
         </el-form-item>
 
@@ -73,7 +73,7 @@ InsTemplate 模板 composition api
             :prop="`${index}`"
             :rules="item.rules"
             :attr="item.attr"
-            @change="change(item)"
+            @change="change(item, index)"
           />
         </el-form-item>
 
@@ -101,7 +101,7 @@ InsTemplate 模板 composition api
             :maxlength="(item.attr && item.attr.maxlength) || 64"
             :placeholder="getPlaceholder(item)"
             :clearable="getClearable(item)"
-            @input="inputChange(item)"
+            @input="inputChange(item, index)"
           />
 
           <!-- 密码框 password -->
@@ -113,7 +113,7 @@ InsTemplate 模板 composition api
             :placeholder="getPlaceholder(item)"
             :clearable="getClearable(item)"
             show-password
-            @input="inputChange(item)"
+            @input="inputChange(item, index)"
           />
 
           <!-- 文本域 textarea -->
@@ -127,7 +127,7 @@ InsTemplate 模板 composition api
             :placeholder="getPlaceholder(item)"
             :clearable="getClearable(item)"
             type="textarea"
-            @input="inputChange(item)"
+            @input="inputChange(item, index)"
           />
 
           <!-- 数字框 inputNumber -->
@@ -138,7 +138,7 @@ InsTemplate 模板 composition api
             controls-position="right"
             clearable
             class="w-full"
-            @change="change(item)"
+            @change="change(item, index)"
           />
 
           <!-- 单选 select -->
@@ -150,7 +150,7 @@ InsTemplate 模板 composition api
             clearable
             filterable
             class=" w-full"
-            @change="change(item)"
+            @change="change(item, index)"
           >
             <el-option
               v-for="option in item.options"
@@ -170,7 +170,7 @@ InsTemplate 模板 composition api
             v-model="item.value"
             v-bind="item.attr"
             class=" w-full"
-            @change="change(item)"
+            @change="change(item, index)"
           />
 
           <!-- 级联选择 cascader -->
@@ -183,7 +183,7 @@ InsTemplate 模板 composition api
             v-bind="item.attr"
             class=" w-full"
             :options="item.options"
-            @change="change(item)"
+            @change="change(item, index)"
           >
           </el-cascader>
 
@@ -312,14 +312,14 @@ export const useCommon = (props, ctx) => {
   /**
    * 表单项值改变
    */
-  const change = item => {
-    ctx.emit('change', item)
+  const change = (item, name) => {
+    ctx.emit('change', item, name)
   }
   /**
    * 文本框 输入 值改变
    */
-  const inputChange = debounce(function(item) {
-    change(item)
+  const inputChange = debounce(function(item, name) {
+    change(item, name)
   }, 500)
   /**
    * 获取 rules

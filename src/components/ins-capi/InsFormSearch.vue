@@ -40,7 +40,7 @@
           :label="showLabel && item.label"
           :prop="`${index}.value`"
           :rules="getRulesWithMessage(item)"
-          @change="change(item)"
+          @change="change(item, index)"
         />
 
         <!-- 3. default -->
@@ -64,7 +64,7 @@
             :maxlength="(item.attr && item.attr.maxlength) || 64"
             :placeholder="getPlaceholder(item)"
             :clearable="getClearable(item)"
-            @input="inputChange(item)"
+            @input="inputChange(item, index)"
           />
 
           <!-- 文本域 textarea -->
@@ -78,14 +78,14 @@
             :placeholder="getPlaceholder(item)"
             :clearable="getClearable(item)"
             type="textarea"
-            @input="inputChange(item)"
+            @input="inputChange(item, index)"
           />
 
           <el-checkbox-group
             v-else-if="item.element == elements.checkbox"
             v-model="item.value"
             class="el-checkbox-group-ins"
-            @change="change(item)"
+            @change="change(item, index)"
           >
             <!-- 普通checkbox -->
             <template v-if="!item.isButton">
@@ -175,14 +175,14 @@ export const useCommon = (props, ctx) => {
   /**
    * 表单项值改变
    */
-  const change = item => {
-    ctx.emit('change', item)
+  const change = (item, name) => {
+    ctx.emit('change', item, name)
   }
   /**
    * 文本框 输入 值改变
    */
-  const inputChange = debounce(function(item) {
-    change(item)
+  const inputChange = debounce(function(item, name) {
+    change(item, name)
   }, 500)
   /**
    * 获取 rules
@@ -213,7 +213,7 @@ export const useCommon = (props, ctx) => {
   }
 }
 export default defineComponent({
-  name: 'InsForm',
+  name: 'InsFormSearch',
   components: {},
   props: {
     /**
