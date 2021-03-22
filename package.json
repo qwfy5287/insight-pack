@@ -1,6 +1,6 @@
 {
   "name": "insight-pack",
-  "version": "1.10.9",
+  "version": "1.10.10",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -27,7 +27,7 @@
     "@vue/cli-plugin-router": "~4.5.12",
     "@vue/cli-plugin-vuex": "~4.5.12",
     "@vue/cli-service": "~4.5.12",
-    "@vue/composition-api": "^1.0.0-rc.3",
+    "@vue/composition-api": "^1.0.0-rc.5",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.6.5",
