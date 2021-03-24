@@ -1,6 +1,6 @@
 {
   "name": "insight-pack",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -12,12 +12,7 @@
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook"
   },
   "main": "lib/insight-pack.umd.min.js",
-  "dependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
@@ -45,6 +40,10 @@
     "vue-cli-plugin-tailwind": "^2.0.6",
     "vue-router": "^3.2.0",
     "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
   }
 }
