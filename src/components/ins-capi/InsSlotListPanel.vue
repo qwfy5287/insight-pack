@@ -109,6 +109,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.relative {
+  position: relative;
+}
+
 .ins-slot-list-panel {
   visibility: initial;
   .toolbar {

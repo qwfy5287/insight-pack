@@ -72,6 +72,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.ml-5 {
+  margin-left: 1.25rem;
+}
+.p-0 {
+  padding: 0px;
+}
+
 .ins-slot-aside-main-panel {
   visibility: initial;
 }

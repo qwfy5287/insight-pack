@@ -14,7 +14,7 @@
     v-bind="$attrs"
     :title="title"
   >
-    <p class="mt-1"><i class="el-icon-warning mr-0.5 el-icon-warning-confirm" />{{ content }}</p>
+    <p class="mt-1"><i class="el-icon-warning mr-0d5 el-icon-warning-confirm" />{{ content }}</p>
     <div class="mt-3 text-center">
       <el-button size="mini" @click="handleCancel">取消</el-button>
       <el-button type="primary" size="mini" @click="handleConfirm">确定</el-button>
@@ -85,6 +85,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mr-0d5 {
+  margin-right: 0.125rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.text-center {
+  text-align: center;
+}
+
 .ins-popover-confirm {
   visibility: initial;
 }

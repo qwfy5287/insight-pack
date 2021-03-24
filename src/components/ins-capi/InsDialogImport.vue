@@ -5,7 +5,7 @@
 时间：2021
 -->
 <template>
-  <div class="page-container ins-template">
+  <div class="ins-dialog-import">
     <!-- {{ msg }} -->
     <ins-dialog-edit ref="insDialogEditRef" :title-full="'从Excel导入'" :ok-text="'导 入'">
       <el-form v-if="ruleForm" ref="ruleForm" :rules="rules" :model="ruleForm" label-width="180px">
@@ -46,7 +46,7 @@
                   <el-button type="primary">下载模板</el-button>
                 </a>
               </div>
-              <div class=" text-red-500 text-xs mt-3">
+              <div class="text-red-500 text-xs mt-3">
                 提示：仅允许导入 ”xls“ 或 ”xlsx“ 格式的文件
               </div>
             </div>
@@ -77,7 +77,7 @@ import InsDialogEdit from './InsDialogEdit.vue'
 // api
 
 export default defineComponent({
-  name: 'InsTemplate',
+  name: 'InsDialogImport',
   components: {
     InsDialogEdit,
   },
@@ -135,7 +135,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.ins-template {
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgba(239, 68, 68, var(--tw-text-opacity));
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.ins-dialog-import {
   visibility: initial;
 }
 </style>

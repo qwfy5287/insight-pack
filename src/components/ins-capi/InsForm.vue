@@ -149,7 +149,7 @@ InsTemplate 模板 composition api
             :placeholder="getPlaceholder(item.label)"
             clearable
             filterable
-            class=" w-full"
+            class="w-full"
             @change="change(item, index)"
           >
             <el-option
@@ -169,7 +169,7 @@ InsTemplate 模板 composition api
             v-else-if="item.element === elements.date"
             v-model="item.value"
             v-bind="item.attr"
-            class=" w-full"
+            class="w-full"
             @change="change(item, index)"
           />
 
@@ -181,7 +181,7 @@ InsTemplate 模板 composition api
             clearable
             filterable
             v-bind="item.attr"
-            class=" w-full"
+            class="w-full"
             :options="item.options"
             @change="change(item, index)"
           >
@@ -500,6 +500,10 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
+.w-full {
+  width: 100%;
+}
+
 .ins-form {
   visibility: initial;
 

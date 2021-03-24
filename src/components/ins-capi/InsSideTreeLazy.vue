@@ -419,6 +419,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.max-w-screen-sm {
+  max-width: 640px;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .ins-side-tree-lazy {
   visibility: initial;
   .custom-tree-node {
