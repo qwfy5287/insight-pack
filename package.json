@@ -1,7 +1,14 @@
 {
   "name": "insight-pack",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "private": false,
+  "main": "lib/insight-pack.common.js",
+  "files": [
+    "lib",
+    "src",
+    "packages"
+  ],
+  "style": "lib/insight-pack.css",
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
@@ -11,7 +18,6 @@
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook"
   },
-  "main": "lib/insight-pack.umd.min.js",
   "dependencies": {},
   "devDependencies": {
     "@storybook/addon-essentials": "^6.0.26",
