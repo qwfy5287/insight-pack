@@ -3,7 +3,7 @@
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }
@@ -30,4 +30,9 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
   word-break: break-all;
+}
+
+// element-ui message 防止被遮挡
+.request-message {
+  z-index: 3000 !important;
 }
