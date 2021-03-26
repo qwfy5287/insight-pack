@@ -10,10 +10,17 @@ import InsPager from '../components/ins-capi/InsPager.vue'
 import InsSideTreeLazy, { insHandleLoadNode } from '../components/ins-capi/InsSideTreeLazy.vue'
 import InsSearch from '../components/ins-capi/InsSearch.vue'
 import InsSlotPanel from '../components/ins-capi/InsSlotPanel.vue'
+import InsSort from '../components/ins-capi/InsSort.vue'
 
 export default {
   title: 'Insight',
 }
+
+export const withInsSort = () => ({
+  components: { InsSort },
+  template: '<InsSort title="标题01">sdf</InsSort>',
+  // methods: { action: action("clicked") },
+})
 
 export const withInsSlotPanel = () => ({
   components: { InsSlotPanel },
