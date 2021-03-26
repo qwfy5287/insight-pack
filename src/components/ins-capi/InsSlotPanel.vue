@@ -100,14 +100,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-}
+// *,
+// ::before,
+// ::after {
+//   box-sizing: border-box;
+//   border-width: 0;
+//   border-style: solid;
+//   border-color: #e5e7eb;
+// }
 
 .relative {
   position: relative;
@@ -115,6 +115,8 @@ export default defineComponent({
 
 .border {
   border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
 }
 
 .rounded {
@@ -135,6 +137,8 @@ export default defineComponent({
 }
 .border-b {
   border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #e5e7eb;
 }
 .border-solid {
   border-style: solid;
