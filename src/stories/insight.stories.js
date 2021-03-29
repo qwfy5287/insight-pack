@@ -18,8 +18,37 @@ export default {
 
 export const withInsSort = () => ({
   components: { InsSort },
-  template: '<InsSort title="标题01">sdf</InsSort>',
-  // methods: { action: action("clicked") },
+  data() {
+    return {
+      tableHeadSort: [
+        { label: '访问量', prop: 'visit' },
+        { label: '更新时间', prop: 'updateTime' },
+        { label: '下载量', prop: 'download' },
+        { label: '数据容量', prop: 'dataVolume' },
+        { label: '评分', prop: 'score' },
+      ],
+      defaultSort: { prop: 'updateTime', order: 'descending' },
+    }
+  },
+  template:
+    '<InsSort title="标题01" :tableHead="tableHeadSort" @sort-change="handleSort" :defaultSort="defaultSort" >sdf</InsSort>',
+  methods: {
+    action: action('clicked'),
+    handleSort(prop, order) {
+      console.log('🚀 ~ file: insight.stories.js ~ line 37 ~ handleSort ~ prop, order', prop, order)
+      if (order === 'ascending') {
+        // state.ascs = [prop]
+        // state.descs = []
+      } else if (order === 'descending') {
+        // state.ascs = []
+        // state.descs = [prop]
+      } else if (order === null) {
+        // state.ascs = []
+        // state.descs = []
+      }
+      // search()
+    },
+  },
 })
 
 export const withInsSlotPanel = () => ({

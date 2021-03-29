@@ -3,37 +3,24 @@
 版本：1.0.0
 作者：林加炳
 时间：2021
+
+事件
+sort-change
 -->
 <template>
   <div class="ins-sort">
     <!-- {{ msg }} -->
-    <!-- ins-sort
-    <div>
-      <ul class=" h-3">
-        <li v-for="(item, index) in list" :key="index" class="float-left">
-          {{ item.label }}
-          <i>u</i>
-          <i>d</i>
-        </li>
-      </ul>
-    </div> -->
-    <div>
-      <!-- :default-sort="{ prop: 'address', order: 'descending' }" -->
-      <el-table :data="tableData" style="width: 100%" @sort-change="sortChange">
-        <!-- <el-table-column prop="date" label="日期" width="180" sortable="custom"> </el-table-column> -->
-        <!-- <el-table-column prop="name" label="姓名" width="180" sortable="custom"> </el-table-column> -->
-        <!-- <el-table-column prop="address" label="地址" sortable="custom"> </el-table-column> -->
-
-        <el-table-column
-          v-for="(item, index) in tableHead"
-          :key="index"
-          :prop="item.prop"
-          :label="item.label"
-          sortable="custom"
-        >
-        </el-table-column>
-      </el-table>
-    </div>
+    <!-- :default-sort="{ prop: 'address', order: 'descending' }" -->
+    <el-table style="width: 100%" :default-sort="defaultSort" @sort-change="sortChange">
+      <el-table-column
+        v-for="(item, index) in tableHead"
+        :key="index"
+        :prop="item.prop"
+        :label="item.label"
+        sortable="custom"
+      >
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -64,12 +51,15 @@ export default defineComponent({
         ]
       },
     },
+    /**
+     * 默认排序
+     * { prop: 'catalogPkid', order: 'descending' }
+     */
+    defaultSort: { type: Object, default: () => ({}) },
   },
   setup(props, ctx) {
     const state = reactive({
       msg: 'hello',
-      list: [{ label: '名称' }, { label: '日期' }, { label: '数量' }],
-      active: 1,
       tableData: [
         // {
         //   date: '2016-05-02',
@@ -92,21 +82,10 @@ export default defineComponent({
         //   address: '上海市普陀区金沙江路 1516 弄',
         // },
       ],
-      //   tableHead: [
-      //     { label: '日期', prop: 'date' },
-      //     { label: '姓名', prop: 'name' },
-      //     { label: '地址', prop: 'address' },
-      //   ],
     })
 
-    const sortChange = (column, prop, order) => {
-      console.log(
-        '🚀 ~ file: InsSort.vue ~ line 77 ~ sortChange ~ column, prop, order',
-        column,
-        prop,
-        order
-      )
-      ctx.emit('sortChange', column, prop, order)
+    const sortChange = ({ prop, order }) => {
+      ctx.emit('sort-change', prop, order)
     }
 
     const render = () => {
@@ -115,6 +94,10 @@ export default defineComponent({
 
     const init = () => {
       render()
+      // 有默认排序时，手动触发事件
+      if (props.defaultSort.prop && props.defaultSort.order) {
+        ctx.emit('sort-change', props.defaultSort.prop, props.defaultSort.order)
+      }
     }
 
     onMounted(() => {
