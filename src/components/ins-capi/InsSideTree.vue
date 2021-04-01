@@ -70,7 +70,12 @@
           </div>
           <span slot="reference">{{ node.label }}</span>
         </el-popover>
-        <span v-else>{{ node.label }}</span>
+        <span v-else>
+          <!-- 节点 插槽 -->
+          <slot :node="node">
+            {{ node.label }}
+          </slot>
+        </span>
       </span>
     </el-tree>
   </div>
