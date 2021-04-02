@@ -26,8 +26,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Logo from './Logo'
-import InsSidebarItem from './InsSidebarItem'
+import Logo from './Logo.vue'
+import InsSidebarItem from './InsSidebarItem.vue'
 import variables from './ins-top-bar-var.scss'
 // import variables from '@/styles/variables.scss'
 
