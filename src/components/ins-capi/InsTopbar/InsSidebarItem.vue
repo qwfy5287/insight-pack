@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import path from 'path'
+// import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item.vue'
 import AppLink from './Link.vue'
@@ -106,7 +106,12 @@ export default {
       if (isExternal(this.basePath)) {
         return this.basePath
       }
-      return path.resolve(this.basePath, routePath)
+      // return path.resolve(this.basePath, routePath)
+      if (routePath.startsWith(this.basePath)) {
+        return routePath
+      } else {
+        return this.basePath
+      }
     },
   },
 }

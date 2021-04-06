@@ -1,6 +1,6 @@
 {
   "name": "insight-pack",
-  "version": "2.2.3",
+  "version": "2.2.6",
   "private": false,
   "main": "lib/insight-pack.common.js",
   "files": [

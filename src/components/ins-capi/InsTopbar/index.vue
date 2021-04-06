@@ -28,7 +28,7 @@
 import { mapGetters } from 'vuex'
 import Logo from './Logo.vue'
 import InsSidebarItem from './InsSidebarItem.vue'
-import variables from './ins-top-bar-var.scss'
+// import variables from './ins-top-bar-var.scss'
 // import variables from '@/styles/variables.scss'
 
 // common
@@ -80,10 +80,22 @@ export default {
       return this.$store.state.settings.sidebarLogo
     },
     variables() {
-      return variables
+      // return variables
+      return {
+        menuText: '#e8edf1',
+        menuActiveText: '#ffffff',
+        subMenuActiveText: '#3390ff',
+        menuBg: '#0f121b',
+        menuHover: '#0f121b',
+        subMenuBg: '#fafafa',
+        subMenuHover: '#ecf5ff',
+        sideBarWidth: '210px',
+      }
     },
     isCollapse() {
-      return !this.sidebar.opened
+      // return !this.sidebar.opened
+      // TODO: 临时 一直显示顶部 菜单
+      return false
     },
   },
 }
