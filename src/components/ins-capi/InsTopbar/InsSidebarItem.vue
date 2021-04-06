@@ -122,9 +122,9 @@ export default {
   .el-submenu__title {
     // padding-right: 0px !important;
     padding-right: 40px;
-    .el-submenu__icon-arrow {
-      // right: 0;
-    }
+    // .el-submenu__icon-arrow {
+    //   // right: 0;
+    // }
   }
 }
 </style>
