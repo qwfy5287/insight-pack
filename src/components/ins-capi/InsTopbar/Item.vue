@@ -1,7 +1,10 @@
+<template>
+  <span slot="title">{{ title }}</span>
+</template>
 <script>
 export default {
   name: 'MenuItem',
-  functional: true,
+  // functional: true,
   props: {
     icon: {
       type: String,
@@ -12,23 +15,24 @@ export default {
       default: '',
     },
   },
-  render(h, context) {
-    const { icon, title } = context.props
-    const vnodes = []
+  // render(h, context) {
+  //   // TODO: 先不显示 图标
+  //   const { icon, title } = context.props
+  //   const vnodes = []
 
-    if (icon) {
-      if (icon.includes('el-icon')) {
-        vnodes.push(<i class={[icon, 'sub-el-icon']} />)
-      } else {
-        vnodes.push(<svg-icon icon-class={icon} />)
-      }
-    }
+  //   if (icon) {
+  //     if (icon.includes('el-icon')) {
+  //       vnodes.push(<i class={[icon, 'sub-el-icon']} />)
+  //     } else {
+  //       vnodes.push(<svg-icon icon-class={icon} />)
+  //     }
+  //   }
 
-    if (title) {
-      vnodes.push(<span slot="title">{title}</span>)
-    }
-    return vnodes
-  },
+  //   if (title) {
+  //     vnodes.push(<span slot="title">{title}</span>)
+  //   }
+  //   return vnodes
+  // },
 }
 </script>
 
