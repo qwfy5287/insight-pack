@@ -17,9 +17,10 @@ InsTemplate 模板 composition api
     >
       <template v-for="(item, index) in dynamicForm">
         <!-- 1. 自定义表单项 插槽 slot -->
+        <!-- :name="item.name" -->
         <slot
           v-if="item.isSlot === true"
-          :name="item.name"
+          :name="index"
           :item="item"
           :index="index"
           :label="getLabel(showLabel, item)"
