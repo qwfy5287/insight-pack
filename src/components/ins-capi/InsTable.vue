@@ -70,7 +70,7 @@ import InsTableColumnCodeText from './ins-table-column/InsTableColumnCodeText.vu
 import InsTableColumnDateTime from './ins-table-column/InsTableColumnDateTime.vue'
 
 // common
-import { TableElements } from '@/common/table.common'
+import { TableElements } from '../../common/table.common'
 export const useCommon = () => {
   //
 }
