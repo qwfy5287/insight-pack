@@ -3,6 +3,18 @@
 版本：1.0.0
 作者：林加炳
 时间：2021
+
+路由示例
+{
+  path: "resource",
+  name: "Resource",
+  component: InsIframe,
+  meta: {
+    title: "资源管理",
+    // icon: 'table',
+    embedUrl: `${embedHostScheduler}/#/dispatch/resources?proId=ALL&embed`,
+  },
+},
 -->
 <template>
   <div class="page-container ins-iframe">
@@ -51,16 +63,7 @@ export default defineComponent({
     )
 
     const render = () => {
-      // statePage.setTableHead([
-      //   {
-      //     label: '标题',
-      //     prop: 'speName',
-      //   },
-      //   {
-      //     label: '备注',
-      //     prop: 'speDesc',
-      //   },
-      // ])
+      //
     }
 
     const init = () => {
