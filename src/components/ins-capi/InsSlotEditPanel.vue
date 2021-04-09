@@ -7,7 +7,7 @@
 <template>
   <div class="ins-slot-edit-panel">
     <!-- ins-slot-edit-panel -->
-    <ins-slot-panel :title="title" :has-back="hasBack">
+    <ins-slot-panel :title="title" :has-back="hasBack" :show-title="showTitle">
       <!-- 内容区 -->
       <div class="contentbox">
         <slot />
@@ -31,6 +31,7 @@ export default {
      */
     title: { type: String, default: null },
     hasBack: { type: Boolean, default: false },
+    showTitle: { type: Boolean, default: true },
   },
   data() {
     return {}
