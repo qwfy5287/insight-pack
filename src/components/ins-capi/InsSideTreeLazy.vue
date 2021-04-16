@@ -291,6 +291,19 @@ export default defineComponent({
     }
 
     /**
+     * 设置 当前节点 在删除之后
+     */
+    const setCurrentKeyAfterRemove = parentKey => {
+      let parentNode = ctx.refs.elTreeRef?.getNode(parentKey)
+      let result = parentNode?.data.id
+      let childrens = parentNode?.childNodes
+      if (childrens?.length) {
+        result = childrens[0]?.data?.id
+      }
+      result && setCurrentKey(result)
+    }
+
+    /**
      * 展开节点
      */
     const expandNode = key => {
@@ -413,6 +426,7 @@ export default defineComponent({
       expandNode,
       setCurrentKey,
       removePopover,
+      setCurrentKeyAfterRemove,
     }
   },
 })
