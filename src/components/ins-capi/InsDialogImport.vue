@@ -7,7 +7,12 @@
 <template>
   <div class="ins-dialog-import">
     <!-- {{ msg }} -->
-    <ins-dialog-edit ref="insDialogEditRef" :title-full="'从Excel导入'" :ok-text="'导 入'">
+    <ins-dialog-edit
+      ref="insDialogEditRef"
+      :title-full="'从Excel导入'"
+      :ok-text="'导 入'"
+      @save="save"
+    >
       <el-form v-if="ruleForm" ref="ruleForm" :rules="rules" :model="ruleForm" label-width="180px">
         <el-form-item v-if="false" label="标签库" prop="labelId">
           <!-- select -->
@@ -19,25 +24,25 @@
             <!-- {{ getLabelActiveItem.label||'' }} -->
           </span>
         </el-form-item>
-        <!-- :data="{labelLibraryId:null}" -->
         <el-form-item label="文件">
-          <!-- :on-preview="handlePreview" -->
-          <!-- :headers="headerToken" -->
-          <!-- :on-change="handleChange" -->
-          <!-- :on-error="handleError" -->
-          <!-- :on-success="handleSuccess" -->
-          <!-- :on-exceed="handleExceed" -->
-          <!-- :before-remove="beforeRemove" -->
-          <!-- :before-upload="beforeUpload" -->
-          <!-- :on-remove="handleRemove" -->
           <el-upload
             ref="elUpload"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-upload="beforeUpload"
+            :before-remove="beforeRemove"
             :limit="1"
+            :on-exceed="handleExceed"
             :file-list="fileList"
             :auto-upload="false"
+            :on-success="handleSuccess"
+            :on-error="handleError"
+            :on-change="handleChange"
             :action="uploadUrl"
             name="file"
             class="upload-demo"
+            :data="elUploadData"
+            :headers="headers"
           >
             <el-button size="small" type="primary">选择文件</el-button>
             <div slot="tip">
@@ -81,7 +86,20 @@ export default defineComponent({
   components: {
     InsDialogEdit,
   },
-  props: {},
+  props: {
+    /**
+     * 上传地址
+     */
+    uploadUrl: { type: String, required: true },
+    /**
+     * 下载模板地址
+     */
+    downloadUrl: { type: String, required: true },
+    /**
+     * 请求头部 token 等
+     */
+    headers: { type: Object, default: () => {} },
+  },
   setup(props, ctx) {
     const state = reactive({
       msg: 'hello',
@@ -97,25 +115,108 @@ export default defineComponent({
         // { name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }
       ],
       labelDocumentOptions: [],
-      uploadUrl: null,
-      downloadUrl: null,
+      // uploadUrl: null,
+      // downloadUrl: null,
+      loading: false,
+      /**
+       * 上传时附带的额外参数
+       */
+      elUploadData: null,
     })
 
-    const edit = () => {
+    const edit = item => {
+      state.elUploadData = item
       ctx.refs.insDialogEditRef.edit()
     }
 
+    const save = () => {
+      let result = false
+      ctx.refs['ruleForm'].validate(valid => {
+        if (valid) {
+          // result = this.ruleForm
+          // this.$emit('save', result)
+          // ctx.refs.elUpload.data.labelLibraryId = this.ruleForm.labelId
+
+          if (ctx.refs.elUpload.uploadFiles.length) {
+            try {
+              state.loading = true
+              ctx.refs.elUpload.submit()
+              state.loading = false
+            } catch (error) {
+              state.loading = false
+            }
+          } else {
+            ctx.root.$message.error('请选择文件')
+          }
+
+          // this.dialogVisible = false
+        } else {
+          result = false
+        }
+      })
+      return result
+    }
+    const beforeUpload = (a, b, c) => {}
+    const handleRemove = (file, fileList) => {
+      console.log(file, fileList)
+    }
+    const handlePreview = file => {
+      console.log(file)
+    }
+    const handleExceed = (files, fileList) => {
+      // this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+      ctx.root.$message.warning(`当前限制选择 1 个文件`)
+    }
+    const beforeRemove = (file, fileList) => {
+      return ctx.root.$confirm(`确定移除 ${file.name}？`)
+    }
+    const handleSuccess = (res, file, fileList) => {
+      state.loading = false
+
+      if (res?.code === '20000') {
+        ctx.root.$message.success(res.msg || '操作成功。')
+        ctx.emit('save')
+        ctx.refs.insDialogEditRef.close()
+      } else {
+        ctx.root.$message.error(`${res.msg}，请重新选择文件。`)
+        ctx.refs.elUpload.clearFiles()
+      }
+
+      // // if (res) {
+      // // if (res.errorCode === 200) {
+      // if (res === '') {
+      //   ctx.root.$message(res || '操作成功。')
+      //   ctx.emit('save')
+      //   // state.dialogVisible = false
+      //   ctx.refs.insDialogEditRef.edit()
+      // } else if (res?.msg) {
+      //   ctx.root.$message.error(`${res.msg}，请重新选择文件。`)
+      //   ctx.refs.elUpload.clearFiles()
+      // } else {
+      //   ctx.root.$message(res || '操作成功。')
+      //   ctx.emit('save')
+      //   // this.dialogVisible = false
+      // }
+      // }
+    }
+    const handleError = (errinfo, file, fileList) => {
+      state.loading = false
+      let message = '内部异常，请重新上传正确的模板文件。'
+      if (errinfo?.message) {
+        message = JSON.parse(errinfo?.message)?.message
+      }
+      ctx.emit('save')
+      ctx.root.$message.error(message)
+    }
+    const handleChange = file => {
+      if (!(file && (file.name.includes('xlsx') || file.name.includes('xls')))) {
+        ctx.root.$message.error(`仅允许导入 ”xls“ 或 ”xlsx“ 格式的文件，请重新选择文件。`)
+        ctx.refs.elUpload.clearFiles()
+      }
+    }
+
     const render = () => {
-      // statePage.setTableHead([
-      //   {
-      //     label: '标题',
-      //     prop: 'speName',
-      //   },
-      //   {
-      //     label: '备注',
-      //     prop: 'speDesc',
-      //   },
-      // ])
+      //
     }
 
     const init = () => {
@@ -129,6 +230,15 @@ export default defineComponent({
     return {
       ...toRefs(state),
       edit,
+      save,
+      beforeUpload,
+      handleRemove,
+      handlePreview,
+      handleExceed,
+      beforeRemove,
+      handleSuccess,
+      handleError,
+      handleChange,
     }
   },
 })
