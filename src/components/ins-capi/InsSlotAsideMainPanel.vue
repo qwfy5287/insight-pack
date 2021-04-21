@@ -8,14 +8,10 @@
   <div class="ins-slot-aside-main-panel">
     <el-container>
       <el-aside width="300px">
-        <slot name="aside">
-          aside
-        </slot>
+        <slot name="aside"> aside </slot>
       </el-aside>
       <el-main class="ml-5 p-0">
-        <slot>
-          main
-        </slot>
+        <slot> main </slot>
       </el-main>
     </el-container>
   </div>

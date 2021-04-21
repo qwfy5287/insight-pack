@@ -127,7 +127,7 @@ export default defineComponent({
       // state.loading = false
     }
 
-    const changeLoading = bol => {
+    const changeLoading = (bol) => {
       // state.loading = bol
     }
 

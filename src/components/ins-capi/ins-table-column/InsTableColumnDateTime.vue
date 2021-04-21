@@ -38,7 +38,7 @@ export default defineComponent({
     /**
      * 获取 列的文本
      */
-    const getText = arg => {
+    const getText = (arg) => {
       let result = arg
       if (arg) {
         result = parseTime(new Date(arg), '{yyyy}-{mm}-{dd} {hh}:{ii}:{ss}')

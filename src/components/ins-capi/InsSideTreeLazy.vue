@@ -186,7 +186,7 @@ export const insHandleLoadNode = async (
  */
 export const transformResData = (res, id = 'id', label = 'label') => {
   // 转换数据
-  res?.data?.forEach(d => {
+  res?.data?.forEach((d) => {
     d.id = d[id]
     d.label = d[label]
   })
@@ -293,7 +293,7 @@ export default defineComponent({
     /**
      * 设置 当前节点 在删除之后
      */
-    const setCurrentKeyAfterRemove = parentKey => {
+    const setCurrentKeyAfterRemove = (parentKey) => {
       let parentNode = ctx.refs.elTreeRef?.getNode(parentKey)
       let result = parentNode?.data.id
       let childrens = parentNode?.childNodes
@@ -306,7 +306,7 @@ export default defineComponent({
     /**
      * 展开节点
      */
-    const expandNode = key => {
+    const expandNode = (key) => {
       let parentNode = ctx.refs.elTreeRef?.getNode(key)
       if (parentNode) parentNode.expanded = true
     }
@@ -387,7 +387,7 @@ export default defineComponent({
     /**
      * 文本框 输入 值改变
      */
-    const inputChange = debounce(function(val) {
+    const inputChange = debounce(function (val) {
       console.log('🚀 ~ file: InsSideTree.vue ~ line 300 ~ inputChange ~ val', val)
       // this.$emit('change', item)
       ctx.refs.elTreeRef.filter(val)

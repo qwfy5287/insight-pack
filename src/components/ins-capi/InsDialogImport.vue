@@ -124,14 +124,14 @@ export default defineComponent({
       elUploadData: null,
     })
 
-    const edit = item => {
+    const edit = (item) => {
       state.elUploadData = item
       ctx.refs.insDialogEditRef.edit()
     }
 
     const save = () => {
       let result = false
-      ctx.refs['ruleForm'].validate(valid => {
+      ctx.refs['ruleForm'].validate((valid) => {
         if (valid) {
           // result = this.ruleForm
           // this.$emit('save', result)
@@ -160,7 +160,7 @@ export default defineComponent({
     const handleRemove = (file, fileList) => {
       console.log(file, fileList)
     }
-    const handlePreview = file => {
+    const handlePreview = (file) => {
       console.log(file)
     }
     const handleExceed = (files, fileList) => {
@@ -208,7 +208,7 @@ export default defineComponent({
       ctx.emit('save')
       ctx.root.$message.error(message)
     }
-    const handleChange = file => {
+    const handleChange = (file) => {
       if (!(file && (file.name.includes('xlsx') || file.name.includes('xls')))) {
         ctx.root.$message.error(`仅允许导入 ”xls“ 或 ”xlsx“ 格式的文件，请重新选择文件。`)
         ctx.refs.elUpload.clearFiles()

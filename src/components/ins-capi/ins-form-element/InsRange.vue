@@ -28,9 +28,7 @@
         @input.native="startInput"
       />
     </el-form-item>
-    <span :span="2" class="num-range-split">
-      至
-    </span>
+    <span :span="2" class="num-range-split"> 至 </span>
     <el-form-item
       class="num-range"
       :rules="setRangeRules(rules[1])"
@@ -63,13 +61,13 @@ export default {
     modelValue: { type: Array, required: true },
     rules: {
       type: Array,
-      default: function() {
+      default: function () {
         return []
       },
     },
     attr: {
       type: Array,
-      default: function() {
+      default: function () {
         return []
       },
     },
@@ -137,7 +135,7 @@ export default {
     setRangeRules(rules) {
       let result = null
       if (rules) {
-        result = rules.map(d => {
+        result = rules.map((d) => {
           if (!d.message) {
             d.message = '请输入' // + label
           }
@@ -163,13 +161,13 @@ export default {
       }
       return result
     },
-    startInput: debounce(function(e) {
+    startInput: debounce(function (e) {
       const val = this.getInputStringValue(e.target.value)
       if (val) {
         this.$refs.elInputNumberStart?.setCurrentValue(val)
       }
     }, 500),
-    endInput: debounce(function(e) {
+    endInput: debounce(function (e) {
       const val = this.getInputStringValue(e.target.value)
       if (val) {
         this.$refs.elInputNumberEnd?.setCurrentValue(val)

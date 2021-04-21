@@ -35,7 +35,7 @@ export const downloadByBlob = (res, fileName, blobType = 'text/plain,charset=utf
  * @param {Object} response response
  * @returns res
  */
-export const handleResponseBlob = response => {
+export const handleResponseBlob = (response) => {
   let result = response.data
 
   if (!response) {

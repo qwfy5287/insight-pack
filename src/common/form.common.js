@@ -55,11 +55,11 @@ export const FormItem = {
  * 获取表单数据
  * @param {*} dynamicForm
  */
-export const getFormData = dynamicForm => {
+export const getFormData = (dynamicForm) => {
   let result = {}
   const form = getDynamicForm(dynamicForm)
   if (!form) return false
-  Object.keys(form).forEach(key => {
+  Object.keys(form).forEach((key) => {
     const item = form[key]
     if (item.element === Elements.cascader) {
       // [1,2,3] > 3
@@ -88,7 +88,7 @@ export const getFormData = dynamicForm => {
 /**
  * 获取 toRefs 的 dynamicForm
  */
-export const getDynamicForm = dynamicForm => {
+export const getDynamicForm = (dynamicForm) => {
   return isRef(dynamicForm) ? dynamicForm.value : dynamicForm
 }
 
@@ -102,7 +102,7 @@ export const setFormData = (dynamicForm, dataItem) => {
 
   const form = getDynamicForm(dynamicForm)
   if (!form) return false
-  Object.keys(form).forEach(key => {
+  Object.keys(form).forEach((key) => {
     const item = form[key]
     const curVal = dataItem[key]
     if (curVal !== undefined && curVal !== null) {
@@ -125,7 +125,7 @@ export const setFormData = (dynamicForm, dataItem) => {
 export const setFormOptions = (dynamicForm, callbackGetOptions) => {
   const form = getDynamicForm(dynamicForm)
   if (!form) return false
-  Object.keys(form).forEach(key => {
+  Object.keys(form).forEach((key) => {
     const item = form[key]
     if (item.code) {
       item.options = callbackGetOptions(item.code) || []

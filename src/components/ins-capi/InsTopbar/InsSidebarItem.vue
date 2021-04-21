@@ -3,8 +3,8 @@
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
-          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-          !item.alwaysShow
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
       "
     >
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
-      const showingChildren = children.filter(item => {
+      const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false
         } else {

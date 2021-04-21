@@ -52,10 +52,10 @@ export default {
       //   this.$router.options.routes
       // )
       let list = treeToListForRouter(this.$router.options.routes, 'path', 'name')
-      list?.forEach(d => (d.path = d.fullPath))
+      list?.forEach((d) => (d.path = d.fullPath))
       // console.log('🚀 ~ file: index.vue ~ line 49 ~ routes ~ list', list)
       let tree = listToTree(list)
-      let firstLevelItem = tree.find(d =>
+      let firstLevelItem = tree.find((d) =>
         // d.fullPath.startsWith(`/${this.$route.path.split('/')[1]}`)
         d.fullPath.startsWith(`/portal`)
       )

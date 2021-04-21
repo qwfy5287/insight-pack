@@ -234,7 +234,7 @@ export const useCommon = (props, ctx) => {
    *  单列，多列
    *  子项是自定义组件时，是否显示必填 *
    */
-  const getFormItemClass = item => {
+  const getFormItemClass = (item) => {
     let result = {}
     result = {
       'is-required': getRangeRequired(item.multiRules) || getInputUnitRequired(item.rules),
@@ -258,10 +258,10 @@ export const useCommon = (props, ctx) => {
    * InsRange 是否必填项
    *   2个值都是必填：返回 true
    */
-  const getRangeRequired = multiRules => {
+  const getRangeRequired = (multiRules) => {
     let result = false
-    multiRules?.forEach(d => {
-      d?.forEach(sd => {
+    multiRules?.forEach((d) => {
+      d?.forEach((sd) => {
         if (sd.required === true) {
           result = true
         }
@@ -274,9 +274,9 @@ export const useCommon = (props, ctx) => {
    * InsInputUnit 是否必填项
    *   值是必填：返回 true
    */
-  const getInputUnitRequired = rules => {
+  const getInputUnitRequired = (rules) => {
     let result = false
-    rules?.forEach(sd => {
+    rules?.forEach((sd) => {
       if (sd.required === true) {
         result = true
       }
@@ -319,7 +319,7 @@ export const useCommon = (props, ctx) => {
   /**
    * 文本框 输入 值改变
    */
-  const inputChange = debounce(function(item, name) {
+  const inputChange = debounce(function (item, name) {
     change(item, name)
   }, 500)
   /**
@@ -328,7 +328,7 @@ export const useCommon = (props, ctx) => {
    */
   const getRulesWithMessage = ({ element, rules } = FormItem) => {
     let result = null
-    result = rules?.map(d => {
+    result = rules?.map((d) => {
       if (!d.message && !d.validator) {
         if (['input', 'textarea'].includes(element) || !element) {
           d.message = '请输入' //+ label
@@ -429,7 +429,7 @@ export default defineComponent({
      */
     const toSaveData = (OnlyReturnShow = false) => {
       let result = {}
-      state.ruleFormRef?.validate(valid => {
+      state.ruleFormRef?.validate((valid) => {
         if (valid) {
           result = getFormData(props.dynamicForm)
         }

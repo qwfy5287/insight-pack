@@ -180,7 +180,7 @@ export default defineComponent({
       }
     }
 
-    const append = data => {
+    const append = (data) => {
       const newChild = { id: id++, label: 'testNode', children: [] }
       if (!data.children) {
         // data.children = []
@@ -207,7 +207,7 @@ export default defineComponent({
 
       const parent = node.parent
       const children = parent.data.children || parent.data
-      const index = children.findIndex(d => d.id === data.id)
+      const index = children.findIndex((d) => d.id === data.id)
       children.splice(index, 1)
     }
 
@@ -225,7 +225,7 @@ export default defineComponent({
     /**
      * 文本框 输入 值改变
      */
-    const inputChange = debounce(function(val) {
+    const inputChange = debounce(function (val) {
       console.log('🚀 ~ file: InsSideTree.vue ~ line 300 ~ inputChange ~ val', val)
       // this.$emit('change', item)
       ctx.refs.elTreeRef.filter(val)

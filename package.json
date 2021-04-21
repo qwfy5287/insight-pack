@@ -20,7 +20,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "regenerator-runtime": "^0.13.7",
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
     "@storybook/vue": "^6.0.26",
@@ -42,7 +41,8 @@
     "fast-copy": "^2.1.1",
     "lodash": "^4.17.21",
     "postcss": "^7",
-    "prettier": "^1.19.1",
+    "prettier": "^2.2.1",
+    "regenerator-runtime": "^0.13.7",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",

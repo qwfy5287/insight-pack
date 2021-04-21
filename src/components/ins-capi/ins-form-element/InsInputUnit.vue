@@ -43,7 +43,7 @@ export default {
     modelValue: { type: Array, required: true },
     options: {
       type: Array,
-      default: function() {
+      default: function () {
         return [
           // { label: 'MB', value: '01' },
           // { label: 'GB', value: '02' }
@@ -52,13 +52,13 @@ export default {
     },
     rules: {
       type: Array,
-      default: function() {
+      default: function () {
         return []
       },
     },
     attr: {
       type: Object,
-      default: function() {
+      default: function () {
         return {}
       },
     },
@@ -116,7 +116,7 @@ export default {
     unitChange(arg) {
       this.$emit('change', [this.getPartValue(this.modelValue[0]), arg])
     },
-    startInput: debounce(function(e) {
+    startInput: debounce(function (e) {
       const val = this.getInputStringValue(e.target.value)
       if (val) {
         this.$refs.elInputNumberStart?.setCurrentValue(val)
@@ -139,7 +139,7 @@ export default {
     setRangeRules(rules) {
       let result = null
       if (rules) {
-        result = rules.map(d => {
+        result = rules.map((d) => {
           if (!d.message) {
             d.message = '请输入' // + label
           }

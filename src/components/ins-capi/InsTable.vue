@@ -102,7 +102,7 @@ export default defineComponent({
      * 过滤 tableHead
      */
     let getTableHeadFilter = computed(() => {
-      return props.tableHead?.filter(f => {
+      return props.tableHead?.filter((f) => {
         return f.hidden !== true
       })
     })

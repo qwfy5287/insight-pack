@@ -169,7 +169,7 @@ export const useCommon = (props, ctx) => {
   const getClearable = (item = FormItem) => {
     return item.attr && item.attr.clearable !== false && true
   }
-  const getLabel = arg => {
+  const getLabel = (arg) => {
     return arg
   }
   /**
@@ -181,7 +181,7 @@ export const useCommon = (props, ctx) => {
   /**
    * 文本框 输入 值改变
    */
-  const inputChange = debounce(function(item, name) {
+  const inputChange = debounce(function (item, name) {
     change(item, name)
   }, 500)
   /**
@@ -190,7 +190,7 @@ export const useCommon = (props, ctx) => {
    */
   const getRulesWithMessage = ({ element, rules } = FormItem) => {
     let result = null
-    result = rules?.map(d => {
+    result = rules?.map((d) => {
       if (!d.message && !d.validator) {
         if (['input', 'textarea'].includes(element) || !element) {
           d.message = '请输入' //+ label
@@ -282,7 +282,7 @@ export default defineComponent({
      */
     const toSaveData = (OnlyReturnShow = false) => {
       let result = {}
-      state.ruleFormRef?.validate(valid => {
+      state.ruleFormRef?.validate((valid) => {
         if (valid) {
           result = getFormData(props.dynamicForm)
         }

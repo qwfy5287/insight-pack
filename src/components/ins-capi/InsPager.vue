@@ -15,9 +15,9 @@
       :current-page="pagerParams.page"
       :layout="
         pagerParams.layout ||
-          (isSpaceBetween
-            ? 'total, sizes, next, pager, prev, jumper'
-            : 'total, sizes, prev, pager, next, jumper')
+        (isSpaceBetween
+          ? 'total, sizes, next, pager, prev, jumper'
+          : 'total, sizes, prev, pager, next, jumper')
       "
       @current-change="handleCurrentChange"
       @size-change="handleSizeChange"
@@ -37,7 +37,7 @@ export default {
      */
     pagerParams: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           page: 1,
           limit: 10,

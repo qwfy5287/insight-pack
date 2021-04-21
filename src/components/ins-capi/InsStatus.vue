@@ -59,7 +59,7 @@ export default defineComponent({
     })
 
     const activeItem = computed(() => {
-      return state.list.find(d => d.value === props.active) ?? {}
+      return state.list.find((d) => d.value === props.active) ?? {}
     })
 
     const render = () => {

@@ -17,9 +17,7 @@
     </p>
     <div class="mt-3 text-right">
       <el-button size="mini" @click="handleCancel">取消</el-button>
-      <el-button type="primary" size="mini" @click="handleConfirm">
-        确定
-      </el-button>
+      <el-button type="primary" size="mini" @click="handleConfirm"> 确定 </el-button>
     </div>
     <span slot="reference">
       <slot>
@@ -62,7 +60,7 @@ export default defineComponent({
      */
     const getConfirmContent = () => {
       let row = props.row ?? {}
-      const name = row?.name || row[Object.keys(row).find(d => d.includes('Name'))] || row?.label
+      const name = row?.name || row[Object.keys(row).find((d) => d.includes('Name'))] || row?.label
       return `此操作将永久删除 ( ${name || '当前记录'} ), 是否继续?`
     }
 

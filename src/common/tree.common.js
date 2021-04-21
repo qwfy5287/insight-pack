@@ -91,7 +91,7 @@ export function treeToListForRouter(tree, id = 'id', label = 'label') {
     first.id = first['fullPath']
 
     if (first.children) {
-      first.children.forEach(d => {
+      first.children.forEach((d) => {
         d.fullPath = `${first.fullPath}/${d[id]}`
 
         // 设置 父子级 属性
@@ -121,7 +121,7 @@ export function treeToListForRouter(tree, id = 'id', label = 'label') {
  * @returns ["0101", "01"]
  */
 export const getParentIdsById = (id, list, result = []) => {
-  let pId = list.find(d => d.id === id)?.pId
+  let pId = list.find((d) => d.id === id)?.pId
   if (pId) {
     result.push(pId)
     return getParentIdsById(pId, list, result)

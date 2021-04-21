@@ -2,7 +2,7 @@
  * 处理异常，输出信息，不中断代码
  * @param {*} err 异常信息
  */
-export const handleCatch = err => {
+export const handleCatch = (err) => {
   console.log('🚀 ~ file: common.js ~ line 6 ~ handleCatch ~ err', err)
 }
 
@@ -19,7 +19,7 @@ export const setSessionStorage = (key, val) => {
  * session 获取
  * @param {*} key
  */
-export const getSessionStorage = key => {
+export const getSessionStorage = (key) => {
   let res = window.sessionStorage.getItem(key)
   return JSON.parse(res)
 }
