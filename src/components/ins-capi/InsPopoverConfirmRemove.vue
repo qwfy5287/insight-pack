@@ -48,6 +48,10 @@ export default defineComponent({
   props: {
     title: { type: String, default: '提示' },
     row: { type: Object, default: null },
+    /**
+     * 动作文本 永久删除
+     */
+    actionText: { type: String, default: '永久删除' },
   },
   setup(props, ctx) {
     const state = reactive({
@@ -61,7 +65,7 @@ export default defineComponent({
     const getConfirmContent = () => {
       let row = props.row ?? {}
       const name = row?.name || row[Object.keys(row).find((d) => d.includes('Name'))] || row?.label
-      return `此操作将永久删除 ( ${name || '当前记录'} ), 是否继续?`
+      return `此操作将${props.actionText} ( ${name || '当前记录'} ), 是否继续?`
     }
 
     const handleConfirm = () => {
