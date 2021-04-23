@@ -36,3 +36,10 @@
 .request-message {
   z-index: 3000 !important;
 }
+
+// ins-table 表格 操作 iconfont 16px > 14px
+.ins-table {
+  .iconfont {
+    font-size: 14px;
+  }
+}
