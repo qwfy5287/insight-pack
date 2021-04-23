@@ -31,7 +31,7 @@
     </div>
 
     <!-- 返回按钮 -->
-    <div v-if="hasBack" class="backBtn">
+    <div v-if="hasBack" class="backBtn" :class="{ inbox: isBackInbox === true }">
       <el-button icon="el-icon-arrow-left" @click="back">返回</el-button>
     </div>
   </div>
@@ -58,8 +58,15 @@ export default defineComponent({
      * 面板标题
      */
     title: { type: String, default: null },
+    /**
+     * 有返回按钮  false
+     */
     hasBack: { type: Boolean, default: false },
     showTitle: { type: Boolean, default: true },
+    /**
+     * 返回按钮在面板内部 true
+     */
+    isBackInbox: { type: Boolean, default: true },
   },
   setup(props, ctx) {
     const state = reactive({
@@ -163,6 +170,10 @@ export default defineComponent({
     top: -40px;
     right: 0;
     text-align: right;
+    &.inbox {
+      top: 12px;
+      right: 15px;
+    }
   }
   .sub-title {
     color: #999999; //#3390ff;

@@ -7,7 +7,12 @@
 <template>
   <div class="ins-slot-edit-panel">
     <!-- ins-slot-edit-panel -->
-    <ins-slot-panel :title="title" :has-back="hasBack" :show-title="showTitle">
+    <ins-slot-panel
+      :title="title"
+      :has-back="hasBack"
+      :show-title="showTitle"
+      :is-back-inbox="isBackInbox"
+    >
       <!-- 内容区 -->
       <div class="contentbox">
         <slot />
@@ -30,8 +35,15 @@ export default {
      * 面板标题
      */
     title: { type: String, default: null },
+    /**
+     * 有返回按钮  false
+     */
     hasBack: { type: Boolean, default: false },
     showTitle: { type: Boolean, default: true },
+    /**
+     * 返回按钮在面板内部 true
+     */
+    isBackInbox: { type: Boolean, default: true },
   },
   data() {
     return {}
