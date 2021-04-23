@@ -32,6 +32,24 @@
   word-break: break-all;
 }
 
+// 文字阴影
+.text-shadow-sm {
+  text-shadow: 0 0 5px rgb(0 0 0 / 25%);
+}
+
+// 阴影
+.box-shadow {
+  box-shadow: 0 0 10px #0000001a;
+}
+
+.w-1200 {
+  width: 1200px;
+}
+
+.bg-full {
+  background-size: 100% 100%;
+}
+
 // element-ui message 防止被遮挡
 .request-message {
   z-index: 3000 !important;
