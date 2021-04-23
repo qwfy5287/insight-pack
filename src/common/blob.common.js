@@ -14,6 +14,18 @@ export const BlobType = {
  *      params,
  *      responseType: 'blob',
  *    })
+ *
+ * 后端要设置
+ * //excel表文件名
+ * //string fileName11 = new String((fileName+ new SimpleDateFormat("yyyyMmdd").format(new Date())+".xls").getBytes("uTF-8")"Iso-8859-1")i
+ * String fileName11 = URLEncoder.encode(s:fileName + new SimpleDateFormat(pattern:"yyyyMMdd").format(new Date())+".xls", enc:"utf-8");
+ * String headstr ="attachment;filename=\""+ fileName11 +"\"";
+ * response.setContentType("APPLICATION/OCTET-STREAM");
+ * response.setHeader(s:"Content-Disposition",headstr);
+ * response.setHeader(s:"FileName",fileName11);
+ * response.setHeader(s:"Access-Control-Expose-Headers", s1:"FileName");
+ * outputstream out = response.getoutputstream();
+ *
  * @param {*} res 接口返回的流文件数据
  * @param {*} fileName 下载的文件名：文件.csv
  */
