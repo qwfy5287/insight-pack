@@ -45,6 +45,16 @@ InsTemplate 模板 composition api
 
         <!-- :item="item" -->
 
+        <!-- 分隔标题 secbar -->
+        <el-form-item
+          v-else-if="item.element === elements.secbar"
+          :key="`form_item_${index}`"
+          class="secbar"
+          label-width="0"
+        >
+          {{ item.label }}
+        </el-form-item>
+
         <!-- 表单项: 区间数值 range  -->
         <el-form-item
           v-else-if="item.element === elements.range"
