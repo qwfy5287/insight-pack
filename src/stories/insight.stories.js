@@ -11,10 +11,32 @@ import InsSideTreeLazy, { insHandleLoadNode } from '../components/ins-capi/InsSi
 import InsSearch from '../components/ins-capi/InsSearch.vue'
 import InsSlotPanel from '../components/ins-capi/InsSlotPanel.vue'
 import InsSort from '../components/ins-capi/InsSort.vue'
+import InsLottie from '../components/ins-capi/InsLottie.vue'
+import animData from '../components/ins-capi/ins-lottie-black-guy-animation.json'
 
 export default {
   title: 'Insight',
 }
+
+export const withInsLottie = () => ({
+  components: { InsLottie },
+  data() {
+    return {
+      animData: animData,
+    }
+  },
+  template: `
+  <div>
+    // :animationData="animData"
+    <InsLottie ref="insLottieRef" title="标题01" :width="200" :height="200"
+    :path="'https://assets2.lottiefiles.com/packages/lf20_pqdnvhfb.json'"/>
+    <el-button @click="$refs.insLottieRef.play()">play</el-button>
+    <el-button @click="$refs.insLottieRef.stop()">stop</el-button>
+    <el-button @click="$refs.insLottieRef.pause()">pause</el-button>
+  </div>
+  `,
+  // methods: { action: action("clicked") },
+})
 
 export const withInsSort = () => ({
   components: { InsSort },
