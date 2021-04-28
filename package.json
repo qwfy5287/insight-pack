@@ -1,6 +1,13 @@
 {
   "name": "insight-pack",
-  "version": "2.8.0",
+  "version": "2.8.1",
+  "description": "vue 2 util common components ins",
+  "author": "qwfy <qwfy5287@qq.com>",
+  "homepage": "https://github.com/qwfy5287/insight-pack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qwfy5287/insight-pack"
+  },
   "private": false,
   "main": "lib/insight-pack.common.js",
   "files": [
