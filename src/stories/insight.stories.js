@@ -25,9 +25,9 @@ export const withInsLottie = () => ({
       animData: animData,
     }
   },
+  // :animationData="animData"
   template: `
   <div>
-    // :animationData="animData"
     <InsLottie ref="insLottieRef" title="标题01" :width="200" :height="200"
     :path="'https://assets2.lottiefiles.com/packages/lf20_pqdnvhfb.json'"/>
     <el-button @click="$refs.insLottieRef.play()">play</el-button>
