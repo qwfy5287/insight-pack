@@ -121,6 +121,6 @@ export default defineComponent({
   color: #e6a23c;
 }
 .el-button + .ins-popover-confirm-remove {
-  margin-left: 6px;
+  margin-left: 10px;
 }
 </style>
