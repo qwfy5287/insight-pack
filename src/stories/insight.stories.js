@@ -13,7 +13,8 @@ import InsSlotPanel from '../components/ins-capi/InsSlotPanel.vue'
 import InsSort from '../components/ins-capi/InsSort.vue'
 import InsLottie from '../components/ins-capi/InsLottie.vue'
 // import animData from '../components/ins-capi/ins-lottie-black-guy-animation.json'
-import animData2 from './data.json'
+// import animData2 from './data.json'
+import animData from './banner-pic.json'
 
 export default {
   title: 'Insight',
@@ -23,13 +24,13 @@ export const withInsLottie = () => ({
   components: { InsLottie },
   data() {
     return {
-      animData: animData2,
+      animData: animData,
     }
   },
   // :animationData="animData"
   template: `
   <div>
-    <InsLottie ref="insLottieRef" title="标题01" :width="200" :height="200" :animationData="animData" 
+    <InsLottie ref="insLottieRef" title="标题01" :width="600" :height="400" :animationData="animData" 
     :path="'https://assets2.lottiefiles.com/packages/lf20_pqdnvhfb.json'"/>
     <el-button @click="$refs.insLottieRef.play()">play</el-button>
     <el-button @click="$refs.insLottieRef.stop()">stop</el-button>
