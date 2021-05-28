@@ -99,3 +99,24 @@
   }
   // End 表格的 el-switch
 }
+
+// 覆盖 vue-admin-template 样式
+// 有 header
+#app {
+  .main-container {
+    // 自定义
+    padding-top: 60px;
+    background-color: #fafcff;
+  }
+  .sidebar-container {
+    // 有 headbar 的时候
+    margin-top: 60px;
+    padding-bottom: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+  }
+  .navbar {
+    background: none;
+    box-shadow: none;
+  }
+}
+// End 覆盖 vue-admin-template  样式
