@@ -1,4 +1,5 @@
 import copy from 'fast-copy'
+import { isExternal } from '@/utils/validate'
 
 /**
  * 列表 to 树
@@ -93,13 +94,20 @@ export function treeToListForRouter(tree, id = 'id', label = 'label') {
     if (first.children) {
       first.children.forEach((d) => {
         d.fullPath = `${first.fullPath}/${d[id]}`
+        // fix: //dashboard > /dashboard
+        d.fullPath = d.fullPath.replace('//', '/')
+
+        // 外链 http, https
+        if (isExternal(d.path)) {
+          d.fullPath = d.path
+        }
 
         // 设置 父子级 属性
         // d.id = d[id]
         // d.pId = first[id]
         // d.label = d[label]
 
-        // path 重名
+        // path 会重名，使用 fullPath 当id
         d.id = d['fullPath']
         d.pId = first['fullPath']
         d.label = d[label]
