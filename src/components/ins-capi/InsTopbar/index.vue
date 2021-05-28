@@ -37,50 +37,92 @@ import { listToTree, treeToListForRouter } from '../../../common/tree.common'
 export default {
   name: 'InsTopbar',
   components: { InsSidebarItem, Logo },
+  props: {
+    /**
+     * 只显示 第一级 false
+     */
+    onlyFirst: { type: Boolean, default: false },
+    /**
+     * 指定 根路径
+     *  /example
+     */
+    rootPath: { type: String, default: null },
+  },
   data() {
     return {
       mode: { vertical: 'vertical', horizontal: 'horizontal' },
+      cacheOneChildrenList: [],
     }
   },
   computed: {
     ...mapGetters(['sidebar']),
     routes() {
-      // debugger
+      let result = []
 
-      // console.log(
-      //   '🚀 ~ file: index.vue ~ line 46 ~ routes ~ this.$router.options.routes',
-      //   this.$router.options.routes
-      // )
       let list = treeToListForRouter(this.$router.options.routes, 'path', 'name')
       list?.forEach((d) => (d.path = d.fullPath))
-      // console.log('🚀 ~ file: index.vue ~ line 49 ~ routes ~ list', list)
       let tree = listToTree(list)
-      let firstLevelItem = tree.find((d) =>
-        // d.fullPath.startsWith(`/${this.$route.path.split('/')[1]}`)
-        d.fullPath.startsWith(`/portal`)
-      )
-      // console.log('🚀 ~ file: index.vue ~ line 52 ~ routes ~ firstLevelItem', firstLevelItem)
-      return firstLevelItem?.children
-      //
-      // return this.$router.options.routes[4]?.children
-      // return [this.$router.options.routes[4]]
-      // return this.$router.options.routes
+      result = tree
+
+      //#region 指定 根路径
+      if (this.rootPath) {
+        let firstLevelItem = tree.find((d) =>
+          // d.fullPath.startsWith(`/${this.$route.path.split('/')[1]}`)
+          d.fullPath.startsWith(this.rootPath)
+        )
+        result = firstLevelItem?.children
+      }
+      //#endregion
+
+      //#region 只显示第一级
+      if (this.onlyFirst) {
+        result?.forEach((d) => {
+          if (d?.children?.length > 1) {
+            // d.children = []
+            // d.hidden = true
+            d?.children.forEach((d) => (d.hidden = true))
+          } else {
+            this.cacheOneChildrenList.push(d.path)
+          }
+        })
+      }
+      //#endregion
+
+      return result
     },
     activeMenu() {
-      // debugger
       const route = this.$route
       const { meta, path } = route
+
+      let result = path
+
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
-        return meta.activeMenu
+        result = meta.activeMenu
       }
-      return path
+
+      //#region 指定 根路径，先从路径中排除
+      let newPath = route.path
+      if (this.rootPath) {
+        newPath = route.path.replace(this.rootPath, '')
+      }
+      //#endregion
+
+      //#region 只显示第一级
+      let firstPath = '/' + newPath.split('/')[1]
+      if (this.onlyFirst && !this.cacheOneChildrenList.includes(firstPath)) {
+        result = (this.rootPath ? this.rootPath : '') + firstPath
+      }
+      //#endregion
+
+      return result
     },
     showLogo() {
       return this.$store.state.settings.sidebarLogo
     },
     variables() {
       // return variables
+      // 菜单颜色 配置
       return {
         menuText: '#e8edf1',
         menuActiveText: '#ffffff',
