@@ -116,6 +116,8 @@ export default defineComponent({
 //   border-color: #e5e7eb;
 // }
 
+// 组件不打包，要把tailwindcss的样式复制过来
+
 .relative {
   position: relative;
 }
@@ -157,6 +159,10 @@ export default defineComponent({
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .ins-slot-panel {
